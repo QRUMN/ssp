@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { Logo } from '../ui/Logo';
 import { Button } from '../ui/Button';
 import { NavLinks } from './NavLinks';
-import { MembershipDialog } from '../auth/MembershipDialog';
 import { ThemeToggle } from '../ui/ThemeToggle';
-import { Avatar } from '../ui/Avatar';
-import { user } from '../auth/user';
-import { Logo } from '../ui/Logo';
+import { useAuth } from '../../contexts/AuthContext';
 
 interface NavigationProps {
   scrollY: number;
 }
 
 export function Navigation({ scrollY }: NavigationProps) {
+  const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [showMembershipDialog, setShowMembershipDialog] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
@@ -76,8 +74,16 @@ export function Navigation({ scrollY }: NavigationProps) {
                       to="/profile"
                       className="glass-effect-strong hover-lift hover-glow rounded-full px-4 py-2"
                     >
-                      <Avatar src={user.avatar_url} alt={user.name} />
-                      <span className="ml-2 font-medium">{user.name}</span>
+                      {user.user_metadata?.avatar_url && (
+                        <img
+                          src={user.user_metadata.avatar_url}
+                          alt={user.user_metadata?.full_name || 'User'}
+                          className="h-8 w-8 rounded-full"
+                        />
+                      )}
+                      <span className="ml-2 font-medium">
+                        {user.user_metadata?.full_name || 'User'}
+                      </span>
                     </Button>
                   ) : (
                     <Button
