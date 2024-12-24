@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { NavLinks } from './NavLinks';
 import { MembershipDialog } from '../auth/MembershipDialog';
-import { ThemeToggle } from '../ui/ThemeToggle'; // Assuming ThemeToggle is defined in this file
-import { Avatar } from '../ui/Avatar'; // Assuming Avatar is defined in this file
-import { user } from '../auth/user'; // Assuming user is defined in this file
+import { ThemeToggle } from '../ui/ThemeToggle';
+import { Avatar } from '../ui/Avatar';
+import { user } from '../auth/user';
+import { Logo } from '../ui/Logo';
 
 interface NavigationProps {
   scrollY: number;
@@ -17,9 +18,18 @@ export function Navigation({ scrollY }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [showMembershipDialog, setShowMembershipDialog] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
   const lastScrollY = React.useRef(0);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
     const threshold = 50;
     const currentScrollY = scrollY;
     
@@ -43,57 +53,52 @@ export function Navigation({ scrollY }: NavigationProps) {
             animate={{ y: 0 }}
             exit={{ y: -100 }}
             transition={{ duration: 0.3 }}
-            className="fixed top-0 left-0 right-0 z-50"
-            style={{
-              backgroundColor: `rgba(30, 29, 22, ${Math.min(scrollY / 500, 0.98)})`,
-              backdropFilter: `blur(${Math.min(scrollY / 100, 8)}px)`,
-            }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+              isScrolled ? 'glass-navbar' : ''
+            }`}
           >
-            <nav className="container mx-auto px-4 h-16 sm:h-20 flex items-center justify-between">
-              <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
-                <img
-                  src="https://github.com/OpalBridgeAi/Uploads/blob/main/android-chrome-512x512.png?raw=true"
-                  alt="Logo"
-                  className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl transform group-hover:scale-105 transition-transform"
-                />
-              </Link>
+            <nav className="container mx-auto px-4 py-3">
+              <div className="flex items-center justify-between">
+                <Link to="/" className="flex items-center space-x-2 hover-lift">
+                  <Logo className="h-8 w-8" />
+                  <span className="text-xl font-bold text-gradient">Sondae</span>
+                </Link>
 
-              <div className="hidden md:flex items-center gap-8">
-                <NavLinks onJoinClick={handleJoinClick} />
+                <div className="hidden md:flex items-center space-x-8">
+                  <NavLinks onJoinClick={handleJoinClick} />
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <ThemeToggle />
+                  {user ? (
+                    <Button
+                      as={Link}
+                      to="/profile"
+                      className="glass-effect-strong hover-lift hover-glow rounded-full px-4 py-2"
+                    >
+                      <Avatar src={user.avatar_url} alt={user.name} />
+                      <span className="ml-2 font-medium">{user.name}</span>
+                    </Button>
+                  ) : (
+                    <Button
+                      as={Link}
+                      to="/join"
+                      className="glass-effect-strong hover-lift hover-glow rounded-full px-6 py-2"
+                    >
+                      Join Now
+                    </Button>
+                  )}
+                </div>
+
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="md:hidden"
+                  onClick={() => setIsOpen(!isOpen)}
+                >
+                  {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+                </Button>
               </div>
-
-              <div className="flex items-center gap-4">
-                <ThemeToggle />
-                {user ? (
-                  <Button
-                    as={Link}
-                    to="/profile"
-                    variant="outline"
-                    className="glass-card"
-                  >
-                    <Avatar src={user.avatar_url} alt={user.name} />
-                    <span className="ml-2">{user.name}</span>
-                  </Button>
-                ) : (
-                  <Button
-                    as={Link}
-                    to="/join"
-                    variant="primary"
-                    className="glass-card"
-                  >
-                    Join Now
-                  </Button>
-                )}
-              </div>
-
-              <Button
-                variant="outline"
-                size="sm"
-                className="md:hidden"
-                onClick={() => setIsOpen(!isOpen)}
-              >
-                {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-              </Button>
             </nav>
 
             <AnimatePresence>

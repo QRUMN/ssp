@@ -68,9 +68,54 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-md bg-paper/10 rounded-2xl border border-ink/5 shadow-lg shadow-ink/5 overflow-hidden
-           dark:bg-paper-dark/10 dark:border-ink-dark/5 dark:shadow-ink-dark/5
-           hover:bg-paper/20 dark:hover:bg-paper-dark/20 transition-all duration-300;
+    @apply backdrop-blur-md bg-paper/8 dark:bg-paper-dark/8
+           border border-ink/5 dark:border-ink-dark/5
+           hover:bg-paper/12 dark:hover:bg-paper-dark/12
+           shadow-lg shadow-ink/5 dark:shadow-ink-dark/5
+           transition-all duration-300;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-paper/5 dark:bg-paper-dark/5
+           hover:bg-paper/10 dark:hover:bg-paper-dark/10
+           transition-all duration-300;
+  }
+
+  .glass-effect-strong {
+    @apply backdrop-blur-lg bg-paper/10 dark:bg-paper-dark/10
+           hover:bg-paper/15 dark:hover:bg-paper-dark/15
+           transition-all duration-300;
+  }
+
+  .glass-navbar {
+    @apply backdrop-blur-xl bg-paper/30 dark:bg-paper-dark/30
+           border-b border-ink/5 dark:border-ink-dark/5
+           transition-all duration-300;
+  }
+
+  .glass-input {
+    @apply backdrop-blur-md bg-paper/5 dark:bg-paper-dark/5
+           border border-ink/10 dark:border-ink-dark/10
+           focus:bg-paper/10 dark:focus:bg-paper-dark/10
+           focus:border-teal dark:focus:border-teal-dark
+           transition-all duration-200;
+  }
+
+  .glass-dropdown {
+    @apply backdrop-blur-xl bg-paper/90 dark:bg-paper-dark/90
+           border border-ink/5 dark:border-ink-dark/5
+           shadow-xl shadow-ink/10 dark:shadow-ink-dark/10;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300
+           hover:-translate-y-1 hover:shadow-lg
+           active:translate-y-0 active:shadow-md;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300
+           hover:shadow-lg hover:shadow-teal/20 dark:hover:shadow-teal-dark/20;
   }
 
   .animate-enter {
@@ -89,12 +134,16 @@
     @apply animate-scale-up;
   }
 
-  .hover-card {
-    @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
 
-  .glass-effect {
-    @apply backdrop-blur-md bg-paper/80 dark:bg-paper-dark/80;
+  .animate-pulse-subtle {
+    animation: pulse-subtle 4s ease-in-out infinite;
+  }
+
+  .hover-card {
+    @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
   }
 }
 
@@ -105,5 +154,23 @@
 
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-teal to-sand dark:from-teal-dark dark:to-sand-dark;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
   }
 }
