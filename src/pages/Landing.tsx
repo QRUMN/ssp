@@ -6,7 +6,8 @@ export function Landing() {
   return (
     <div className="min-h-screen relative overflow-hidden">
       {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-teal/20 to-sand/20 dark:from-teal-dark/20 dark:to-sand-dark/20" />
+      <div className="absolute inset-0 bg-gradient-to-br from-teal bg-opacity-20 to-sand bg-opacity-20 
+                      dark:from-teal-dark dark:bg-opacity-20 dark:to-sand-dark dark:bg-opacity-20" />
       
       {/* Hero section */}
       <section className="relative pt-32 pb-16 px-4">
@@ -18,7 +19,7 @@ export function Landing() {
               Experience
             </h1>
             
-            <p className="text-xl md:text-2xl text-ink/80 dark:text-ink-dark/80 max-w-2xl mx-auto animate-pulse-subtle">
+            <p className="text-xl md:text-2xl text-ink text-opacity-80 dark:text-ink-dark dark:text-opacity-80 max-w-2xl mx-auto animate-pulse-subtle">
               Join our community of cultural enthusiasts and discover unique events
             </p>
             
