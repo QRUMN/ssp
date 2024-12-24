@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-teal: 0 90 113;    /* #005A71 */
+    --color-ink: 30 29 22;     /* #1E1D16 */
+    --color-paper: 247 247 247; /* #F7F7F7 */
+    --color-sand: 254 240 173;  /* #FEF0AD */
+  }
+
+  body {
+    @apply bg-paper text-ink antialiased;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Syne', system-ui, sans-serif;
+    @apply font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .scrollbar {
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-ink/10 hover:scrollbar-thumb-ink/20;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
