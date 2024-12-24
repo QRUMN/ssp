@@ -3,20 +3,18 @@ import { Link } from 'react-router-dom';
 
 export function NavLinks() {
   return (
-    <div className="flex items-center space-x-8">
+    <div className="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
       <Link 
         to="/events" 
-        className="text-ink text-opacity-80 hover:text-opacity-100 dark:text-paper dark:text-opacity-80 dark:hover:text-opacity-100 transition-colors relative group"
+        className="glass-card px-4 py-2 font-medium hover:scale-105 transition-transform"
       >
-        <span>Events</span>
-        <span className="absolute inset-x-0 -bottom-1 h-px bg-teal dark:bg-sand scale-x-0 group-hover:scale-x-100 transition-transform" />
+        Events
       </Link>
       <Link 
         to="/community" 
-        className="text-ink text-opacity-80 hover:text-opacity-100 dark:text-paper dark:text-opacity-80 dark:hover:text-opacity-100 transition-colors relative group"
+        className="glass-card px-4 py-2 font-medium hover:scale-105 transition-transform"
       >
-        <span>Community</span>
-        <span className="absolute inset-x-0 -bottom-1 h-px bg-teal dark:bg-sand scale-x-0 group-hover:scale-x-100 transition-transform" />
+        Community
       </Link>
     </div>
   );
