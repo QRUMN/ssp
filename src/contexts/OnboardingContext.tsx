@@ -75,3 +75,11 @@ export function OnboardingProvider({ children, onComplete }: OnboardingProviderP
     </OnboardingContext.Provider>
   );
 }
+
+export function useOnboarding() {
+  const context = React.useContext(OnboardingContext);
+  if (!context) {
+    throw new Error('useOnboarding must be used within an OnboardingProvider');
+  }
+  return context;
+}
