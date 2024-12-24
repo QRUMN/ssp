@@ -63,8 +63,14 @@
   }
 
   .card {
-    @apply bg-paper rounded-2xl border border-ink/10 shadow-lg shadow-ink/5 overflow-hidden
-           dark:bg-paper-dark dark:border-ink-dark/10 dark:shadow-ink-dark/5;
+    @apply backdrop-blur-md bg-paper/20 rounded-2xl border border-ink/10 shadow-lg shadow-ink/5 overflow-hidden
+           dark:bg-paper-dark/20 dark:border-ink-dark/10 dark:shadow-ink-dark/5;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-md bg-paper/10 rounded-2xl border border-ink/5 shadow-lg shadow-ink/5 overflow-hidden
+           dark:bg-paper-dark/10 dark:border-ink-dark/5 dark:shadow-ink-dark/5
+           hover:bg-paper/20 dark:hover:bg-paper-dark/20 transition-all duration-300;
   }
 
   .animate-enter {

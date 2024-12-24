@@ -5,6 +5,9 @@ import { Menu, X } from 'lucide-react';
 import { Button } from '../ui/Button';
 import { NavLinks } from './NavLinks';
 import { MembershipDialog } from '../auth/MembershipDialog';
+import { ThemeToggle } from '../ui/ThemeToggle'; // Assuming ThemeToggle is defined in this file
+import { Avatar } from '../ui/Avatar'; // Assuming Avatar is defined in this file
+import { user } from '../auth/user'; // Assuming user is defined in this file
 
 interface NavigationProps {
   scrollY: number;
@@ -57,6 +60,30 @@ export function Navigation({ scrollY }: NavigationProps) {
 
               <div className="hidden md:flex items-center gap-8">
                 <NavLinks onJoinClick={handleJoinClick} />
+              </div>
+
+              <div className="flex items-center gap-4">
+                <ThemeToggle />
+                {user ? (
+                  <Button
+                    as={Link}
+                    to="/profile"
+                    variant="outline"
+                    className="glass-card"
+                  >
+                    <Avatar src={user.avatar_url} alt={user.name} />
+                    <span className="ml-2">{user.name}</span>
+                  </Button>
+                ) : (
+                  <Button
+                    as={Link}
+                    to="/join"
+                    variant="primary"
+                    className="glass-card"
+                  >
+                    Join Now
+                  </Button>
+                )}
               </div>
 
               <Button
