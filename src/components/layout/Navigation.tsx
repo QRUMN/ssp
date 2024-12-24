@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { Logo } from '../ui/Logo';
-import { Button } from '../ui/Button';
 import { NavLinks } from './NavLinks';
 import { ThemeToggle } from '../ui/ThemeToggle';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../hooks/useAuth';
 
 export function Navigation() {
   const { user } = useAuth();
@@ -29,7 +27,6 @@ export function Navigation() {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2 hover-lift">
-            <Logo className="h-8 w-8" />
             <span className="text-xl font-bold text-gradient">Sondae</span>
           </Link>
 
@@ -40,10 +37,9 @@ export function Navigation() {
           <div className="flex items-center space-x-4">
             <ThemeToggle />
             {user ? (
-              <Button
-                as={Link}
+              <Link
                 to="/profile"
-                className="glass-effect-strong hover-lift hover-glow rounded-full px-4 py-2"
+                className="glass-effect-strong hover-lift hover-glow rounded-full px-4 py-2 flex items-center"
               >
                 {user.user_metadata?.avatar_url && (
                   <img
@@ -55,26 +51,23 @@ export function Navigation() {
                 <span className="ml-2 font-medium">
                   {user.user_metadata?.full_name || 'User'}
                 </span>
-              </Button>
+              </Link>
             ) : (
-              <Button
-                as={Link}
+              <Link
                 to="/join"
                 className="glass-effect-strong hover-lift hover-glow rounded-full px-6 py-2"
               >
                 Join Now
-              </Button>
+              </Link>
             )}
           </div>
 
-          <Button
-            variant="outline"
-            size="sm"
-            className="md:hidden"
+          <button
+            className="md:hidden p-2 rounded-lg hover:bg-ink/5 dark:hover:bg-paper/5"
             onClick={() => setIsOpen(!isOpen)}
           >
-            {isOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </Button>
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
         </div>
       </div>
 
