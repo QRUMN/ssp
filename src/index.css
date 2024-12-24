@@ -13,28 +13,64 @@
   }
 
   body {
-    @apply bg-paper text-ink antialiased;
+    @apply bg-paper text-ink antialiased min-h-screen;
     font-family: 'Space Grotesk', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Syne', system-ui, sans-serif;
-    @apply font-bold tracking-tight;
+    @apply font-bold tracking-tight text-ink;
   }
 }
 
 @layer components {
-  .scrollbar {
+  .scrollbar-custom {
     @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-ink/10 hover:scrollbar-thumb-ink/20;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-teal text-paper hover:bg-teal/90 active:bg-teal/80;
+  }
+
+  .btn-secondary {
+    @apply btn bg-sand text-ink hover:bg-sand/90 active:bg-sand/80;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-ink/10 hover:border-ink/20 active:bg-ink/5;
+  }
+
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border-2 border-ink/10 bg-paper focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-all duration-200;
+  }
+
+  .card {
+    @apply bg-paper rounded-2xl border border-ink/10 shadow-lg shadow-ink/5 overflow-hidden;
+  }
+
+  .animate-enter {
+    @apply animate-fade-in;
+  }
+
+  .animate-enter-up {
+    @apply animate-slide-up;
+  }
+
+  .animate-enter-down {
+    @apply animate-slide-down;
+  }
+
+  .animate-scale {
+    @apply animate-scale-up;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
-  }
-
-  .text-pretty {
-    text-wrap: pretty;
   }
 }
