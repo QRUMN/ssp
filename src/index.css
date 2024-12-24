@@ -6,26 +6,35 @@
 
 @layer base {
   :root {
-    --color-teal: 0 90 113;    /* #005A71 */
-    --color-ink: 30 29 22;     /* #1E1D16 */
-    --color-paper: 247 247 247; /* #F7F7F7 */
-    --color-sand: 254 240 173;  /* #FEF0AD */
+    --color-teal: 0 90 113;      /* #005A71 */
+    --color-ink: 30 29 22;       /* #1E1D16 */
+    --color-paper: 247 247 247;  /* #F7F7F7 */
+    --color-sand: 254 240 173;   /* #FEF0AD */
+
+    --color-teal-dark: 0 108 135;     /* #006C87 */
+    --color-ink-dark: 247 247 247;    /* #F7F7F7 */
+    --color-paper-dark: 30 29 22;     /* #1E1D16 */
+    --color-sand-dark: 255 233 128;   /* #FFE980 */
   }
 
   body {
-    @apply bg-paper text-ink antialiased min-h-screen;
-    font-family: 'Space Grotesk', system-ui, sans-serif;
+    @apply bg-paper text-ink antialiased min-h-screen transition-colors duration-200;
+  }
+
+  .dark body {
+    @apply bg-paper-dark text-ink-dark;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Syne', system-ui, sans-serif;
-    @apply font-bold tracking-tight text-ink;
+    @apply font-bold tracking-tight text-ink dark:text-ink-dark;
   }
 }
 
 @layer components {
   .scrollbar-custom {
-    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-ink/10 hover:scrollbar-thumb-ink/20;
+    @apply scrollbar-thin scrollbar-track-transparent scrollbar-thumb-ink/10 hover:scrollbar-thumb-ink/20 
+           dark:scrollbar-thumb-ink-dark/10 dark:hover:scrollbar-thumb-ink-dark/20;
   }
 
   .btn {
@@ -33,23 +42,29 @@
   }
 
   .btn-primary {
-    @apply btn bg-teal text-paper hover:bg-teal/90 active:bg-teal/80;
+    @apply btn bg-teal text-paper hover:bg-teal/90 active:bg-teal/80
+           dark:bg-teal-dark dark:hover:bg-teal-dark/90 dark:active:bg-teal-dark/80;
   }
 
   .btn-secondary {
-    @apply btn bg-sand text-ink hover:bg-sand/90 active:bg-sand/80;
+    @apply btn bg-sand text-ink hover:bg-sand/90 active:bg-sand/80
+           dark:bg-sand-dark dark:hover:bg-sand-dark/90 dark:active:bg-sand-dark/80;
   }
 
   .btn-outline {
-    @apply btn border-2 border-ink/10 hover:border-ink/20 active:bg-ink/5;
+    @apply btn border-2 border-ink/10 hover:border-ink/20 active:bg-ink/5
+           dark:border-ink-dark/10 dark:hover:border-ink-dark/20 dark:active:bg-ink-dark/5;
   }
 
   .input {
-    @apply w-full px-4 py-2 rounded-lg border-2 border-ink/10 bg-paper focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-all duration-200;
+    @apply w-full px-4 py-2 rounded-lg border-2 border-ink/10 bg-paper 
+           focus:border-teal focus:ring-1 focus:ring-teal outline-none transition-all duration-200
+           dark:border-ink-dark/10 dark:bg-paper-dark dark:focus:border-teal-dark dark:focus:ring-teal-dark;
   }
 
   .card {
-    @apply bg-paper rounded-2xl border border-ink/10 shadow-lg shadow-ink/5 overflow-hidden;
+    @apply bg-paper rounded-2xl border border-ink/10 shadow-lg shadow-ink/5 overflow-hidden
+           dark:bg-paper-dark dark:border-ink-dark/10 dark:shadow-ink-dark/5;
   }
 
   .animate-enter {
@@ -67,10 +82,22 @@
   .animate-scale {
     @apply animate-scale-up;
   }
+
+  .hover-card {
+    @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .glass-effect {
+    @apply backdrop-blur-md bg-paper/80 dark:bg-paper-dark/80;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-teal to-sand dark:from-teal-dark dark:to-sand-dark;
   }
 }
