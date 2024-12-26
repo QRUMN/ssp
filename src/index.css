@@ -68,11 +68,22 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-md bg-opacity-5 bg-paper dark:bg-paper-dark
-           border border-ink border-opacity-5 dark:border-ink-dark
-           hover:bg-opacity-10 dark:hover:bg-opacity-10
+    @apply backdrop-blur-md bg-opacity-50 bg-paper/5 dark:bg-paper-dark/5
            shadow-lg shadow-ink/5 dark:shadow-ink-dark/5
+           hover:shadow-xl hover:shadow-ink/10 dark:hover:shadow-ink-dark/10
            rounded-2xl
+           transition-all duration-300 ease-out;
+  }
+
+  .glass-card-hover {
+    @apply hover:bg-opacity-10 dark:hover:bg-opacity-10
+           hover:-translate-y-1
+           hover:scale-[1.02];
+  }
+
+  .glass-navbar {
+    @apply backdrop-blur-xl bg-opacity-50 bg-paper dark:bg-paper-dark
+           shadow-lg shadow-ink/5 dark:shadow-ink-dark/5
            transition-all duration-300;
   }
 
@@ -85,12 +96,6 @@
   .glass-effect-strong {
     @apply backdrop-blur-lg bg-opacity-10 bg-paper dark:bg-paper-dark
            hover:bg-opacity-15 dark:hover:bg-opacity-15
-           transition-all duration-300;
-  }
-
-  .glass-navbar {
-    @apply backdrop-blur-xl bg-opacity-30 bg-paper dark:bg-paper-dark
-           border-b border-ink border-opacity-5 dark:border-ink-dark
            transition-all duration-300;
   }
 
@@ -140,7 +145,31 @@
   }
 
   .animate-pulse-subtle {
-    animation: pulse-subtle 4s ease-in-out infinite;
+    animation: pulse-subtle 3s ease-in-out infinite;
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%
+    );
+    background-size: 1000px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+
+  .pricing-popular {
+    @apply relative overflow-hidden;
+  }
+
+  .pricing-popular::before {
+    @apply content-[''] absolute -right-12 top-6 bg-gradient-to-r from-teal to-sand px-14 py-1 rotate-45;
+    content: 'POPULAR';
+    color: white;
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-align: center;
   }
 
   .hover-card {
@@ -173,5 +202,14 @@
   }
   50% {
     opacity: 0.8;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
   }
 }
