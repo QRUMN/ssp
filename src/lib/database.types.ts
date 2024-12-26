@@ -14,7 +14,7 @@ export interface Database {
           id: string
           name: string
           email: string
-          membership_tier: 'free-jawn' | 'pow-wow' | 'tribe'
+          membership_tier: 'nomad' | 'pow-wow' | 'tribe'
           avatar_url: string | null
           bio: string | null
           location: string | null

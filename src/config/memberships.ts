@@ -1,4 +1,4 @@
-export type MembershipTier = 'free-jawn' | 'pow-wow' | 'tribe';
+export type MembershipTier = 'nomad' | 'pow-wow' | 'tribe';
 
 export interface Membership {
   id: MembershipTier;
@@ -11,8 +11,8 @@ export interface Membership {
 
 export const memberships: Membership[] = [
   {
-    id: 'free-jawn',
-    name: 'Free Jawn',
+    id: 'nomad',
+    name: 'Nomad',
     price: '$0',
     period: '/month',
     features: [
@@ -53,7 +53,7 @@ export const memberships: Membership[] = [
 ];
 
 export const membershipTierLabels: Record<MembershipTier, string> = {
-  'free-jawn': 'Free Jawn',
+  'nomad': 'Nomad',
   'pow-wow': 'Pow Wow',
   'tribe': 'Tribe',
 };
