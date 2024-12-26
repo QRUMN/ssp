@@ -10,24 +10,22 @@
     --color-ink: 30 29 22;       /* #1E1D16 */
     --color-paper: 247 247 247;  /* #F7F7F7 */
     --color-sand: 254 240 173;   /* #FEF0AD */
+  }
 
-    --color-teal-dark: 0 108 135;     /* #006C87 */
-    --color-ink-dark: 247 247 247;    /* #F7F7F7 */
-    --color-paper-dark: 30 29 22;     /* #1E1D16 */
-    --color-sand-dark: 255 233 128;   /* #FFE980 */
+  :root[class~="dark"] {
+    --color-teal: 0 108 135;     /* #006C87 */
+    --color-ink: 247 247 247;    /* #F7F7F7 */
+    --color-paper: 30 29 22;     /* #1E1D16 */
+    --color-sand: 255 233 128;   /* #FFE980 */
   }
 
   body {
-    @apply bg-paper text-ink antialiased min-h-screen transition-colors duration-200;
-  }
-
-  .dark body {
-    @apply bg-paper-dark text-ink-dark;
+    @apply bg-paper text-ink antialiased min-h-screen;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Syne', system-ui, sans-serif;
-    @apply font-bold tracking-tight text-ink dark:text-ink-dark;
+    @apply font-bold tracking-tight;
   }
 }
 
@@ -68,43 +66,31 @@
   }
 
   .glass-card {
-    @apply backdrop-blur-md bg-opacity-50 bg-paper/5 dark:bg-paper-dark/5
-           shadow-lg shadow-ink/5 dark:shadow-ink-dark/5
-           hover:shadow-xl hover:shadow-ink/10 dark:hover:shadow-ink-dark/10
+    @apply backdrop-blur-md bg-paper/5 dark:bg-paper/5
+           shadow-lg shadow-ink/5 dark:shadow-ink/5
+           hover:shadow-xl hover:shadow-ink/10 dark:hover:shadow-ink/10
            rounded-2xl
            transition-all duration-300 ease-out;
   }
 
   .glass-card-hover {
-    @apply hover:bg-opacity-10 dark:hover:bg-opacity-10
+    @apply hover:bg-paper/10 dark:hover:bg-paper/10
            hover:-translate-y-1
            hover:scale-[1.02];
   }
 
   .glass-navbar {
-    @apply backdrop-blur-xl bg-opacity-50 bg-paper dark:bg-paper-dark
-           shadow-lg shadow-ink/5 dark:shadow-ink-dark/5
-           transition-all duration-300;
-  }
-
-  .glass-effect {
-    @apply backdrop-blur-md bg-opacity-5 bg-paper dark:bg-paper-dark
-           hover:bg-opacity-10 dark:hover:bg-opacity-10
-           transition-all duration-300;
-  }
-
-  .glass-effect-strong {
-    @apply backdrop-blur-lg bg-opacity-10 bg-paper dark:bg-paper-dark
-           hover:bg-opacity-15 dark:hover:bg-opacity-15
+    @apply backdrop-blur-xl bg-paper/50 dark:bg-paper/50
+           shadow-lg shadow-ink/5 dark:shadow-ink/5
            transition-all duration-300;
   }
 
   .glass-input {
-    @apply backdrop-blur-md bg-opacity-5 bg-paper dark:bg-paper-dark
-           border border-ink border-opacity-10 dark:border-ink-dark
-           focus:bg-opacity-10 dark:focus:bg-opacity-10
-           focus:border-teal dark:focus:border-teal-dark
-           transition-all duration-200;
+    @apply backdrop-blur-md bg-paper/5 dark:bg-paper/5
+           border border-ink/10 dark:border-ink/10
+           focus:border-ink/20 dark:focus:border-ink/20
+           rounded-xl
+           transition-all duration-300;
   }
 
   .glass-dropdown {
@@ -212,4 +198,61 @@
   100% {
     background-position: 1000px 0;
   }
+}
+
+/* Dark mode specific styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark .glass-card {
+  @apply bg-opacity-10;
+  backdrop-filter: blur(12px);
+}
+
+.dark .glass-card-hover:hover {
+  @apply bg-opacity-15;
+}
+
+.dark .glass-navbar {
+  @apply bg-opacity-30;
+  backdrop-filter: blur(16px);
+}
+
+/* Form elements dark mode */
+.dark input,
+.dark textarea,
+.dark select {
+  @apply bg-paper/5 text-ink;
+  color-scheme: dark;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  @apply text-ink/50;
+}
+
+/* Button dark mode */
+.dark button {
+  @apply text-ink;
+}
+
+.dark button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Checkbox and radio dark mode */
+.dark input[type="checkbox"],
+.dark input[type="radio"] {
+  @apply border-ink/20 bg-paper/5;
+}
+
+.dark input[type="checkbox"]:checked,
+.dark input[type="radio"]:checked {
+  @apply bg-teal border-transparent;
+}
+
+/* Focus states */
+.dark *:focus-visible {
+  @apply outline-none ring-2 ring-teal/50;
 }

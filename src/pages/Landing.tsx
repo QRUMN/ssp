@@ -9,9 +9,9 @@ import {
 export function Landing() {
   const pricingTiers = [
     {
-      name: 'Free',
+      name: 'Nomad',
       price: '0',
-      description: 'Perfect for getting started',
+      description: 'Start your cultural journey',
       features: [
         'Join community events',
         'Create basic profile',
@@ -22,11 +22,11 @@ export function Landing() {
       color: 'text-teal'
     },
     {
-      name: 'Pro',
+      name: 'POW WOW',
       price: '9.99',
-      description: 'Most popular for enthusiasts',
+      description: 'Gather and celebrate together',
       features: [
-        'All Free features',
+        'All Nomad features',
         'Create & host events',
         'Priority support',
         'Advanced networking'
@@ -36,11 +36,11 @@ export function Landing() {
       popular: true
     },
     {
-      name: 'Ultimate',
+      name: 'TRIBE',
       price: '19.99',
-      description: 'For serious community builders',
+      description: 'Unite and empower your community',
       features: [
-        'All Pro features',
+        'All POW WOW features',
         'VIP event access',
         'Custom branding',
         'Analytics dashboard'
