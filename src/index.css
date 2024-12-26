@@ -51,7 +51,7 @@
 
   .btn-outline {
     @apply btn border-2 border-ink/10 hover:border-ink/20 active:bg-ink/5
-           dark:border-ink-dark/10 dark:hover:border-ink-dark/20 dark:active:bg-ink-dark/5;
+           dark:border-ink/10 dark:hover:border-ink/20 dark:active:bg-ink/5;
   }
 
   .input {
