@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FuturisticLayout } from './components/layout/FuturisticLayout';
 import { Landing } from './pages/Landing';
 import { Join } from './pages/Join';
-import { FreeJawnOnboarding } from './pages/FreeJawnOnboarding';
-import { PaidOnboarding } from './pages/PaidOnboarding';
+import { Onboarding } from './pages/Onboarding';
 import { Home } from './pages/Home';
 import { Events } from './pages/Events';
 import { Community } from './pages/Community';
@@ -34,18 +33,10 @@ export default function App() {
             <Routes>
               <Route path="/join" element={<Join />} />
               <Route 
-                path="/onboarding/free-jawn" 
+                path="/onboarding" 
                 element={
                   <ProtectedRoute>
-                    <FreeJawnOnboarding />
-                  </ProtectedRoute>
-                } 
-              />
-              <Route 
-                path="/onboarding/paid" 
-                element={
-                  <ProtectedRoute>
-                    <PaidOnboarding />
+                    <Onboarding />
                   </ProtectedRoute>
                 } 
               />

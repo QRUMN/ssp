@@ -22,20 +22,19 @@ export function useMembershipFlow() {
       // Store selection
       localStorage.setItem('selectedMembership', membershipId);
 
-      // Create anonymous session for free-jawn users
-      if (membershipId === 'free-jawn') {
+      // Create anonymous session for nomad users
+      if (membershipId === 'nomad') {
         const { data: { session }, error } = await supabase.auth.signUp({
           email: `${Date.now()}@temp.sondae.service`,
           password: Math.random().toString(36).slice(-8),
         });
 
         if (error) throw error;
-        if (session) {
-          navigate('/onboarding/free-jawn');
-        }
-      } else {
-        navigate('/onboarding/paid');
       }
+      
+      // Redirect to onboarding
+      navigate('/onboarding');
+      
     } catch (error) {
       console.error('Error in membership flow:', error);
       trackEvent('membership_selection_error', {
