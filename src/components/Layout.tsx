@@ -3,6 +3,7 @@ import { Link, useLocation, Outlet } from 'react-router-dom';
 import { Home, Calendar, Users, User } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { ThemeToggle } from './ui/ThemeToggle';
+import { Logo } from './ui/Logo';
 
 interface NavItemProps {
   to: string;
@@ -35,7 +36,9 @@ export function Layout() {
         {/* Sidebar */}
         <nav className="w-64 bg-paper border-r border-ink/10 p-4 space-y-4">
           <div className="flex items-center justify-between px-4 py-3">
-            <span className="text-xl font-bold text-teal">Sondae Service</span>
+            <Link to="/home" className="block">
+              <Logo className="w-8 h-8" />
+            </Link>
             <ThemeToggle />
           </div>
           
