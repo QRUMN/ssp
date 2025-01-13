@@ -20,7 +20,7 @@
     "date-fns": "^3.3.1",
     "framer-motion": "^11.15.0",
     "jwt-decode": "^4.0.0",
-    "lucide-react": "^0.344.0",
+    "lucide-react": "^0.471.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.22.2",
